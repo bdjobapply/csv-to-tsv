@@ -7,7 +7,7 @@ document.getElementById('convertBtn').addEventListener('click', function() {
   document.getElementById('output').value = tsvLines.join('\n');
 });
 
-// CSV পার্সার যা ডাবল কোটেশন সহ কমা হ্যান্ডেল করে
+// CSV পার্সার যা ডাবল কোটেশন ভিতরের কমা ঠিকভাবে রাখে
 function csvToArray(str) {
   const result = [];
   let curr = '';
@@ -18,13 +18,14 @@ function csvToArray(str) {
 
     if (char === '"') {
       if (inQuotes && str[i+1] === '"') {
-        // ডাবল কোটেশন এলে এটাকে একবার কনভার্ট করা
+        // ডাবল কোটেশন ভিতরের ডাবল কোটেশন => একবার যুক্ত করা
         curr += '"';
         i++;
       } else {
-        inQuotes = !inQuotes;
+        inQuotes = !inQuotes; // কোটেশনের ভিতরে/বাহিরে টগল
       }
     } else if (char === ',' && !inQuotes) {
+      // কেবল বাইরের কমা অনুযায়ী আলাদা করা
       result.push(curr);
       curr = '';
     } else {
