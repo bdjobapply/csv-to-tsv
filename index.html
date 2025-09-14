@@ -4,66 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSV → TSV কনভার্টার</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f7f7f7;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 22px;
-      color: #333;
-    }
-    textarea {
-      width: 100%;
-      height: 120px;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-    button {
-      background: #007acc;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    button:hover {
-      background: #005fa3;
-    }
-    #output {
-      width: 100%;
-      height: 120px;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>CSV → TSV কনভার্টার</h1>
-  <label for="csv">কমা (,) দিয়ে আলাদা ডাটা লিখুন:</label>
-  <textarea id="csv" placeholder="Name,01500000000,2000-01-01,25,5,4,পুরুষ,5,করলামাধবপুর,212.8.243.77,BD,Dhaka,Desktop"></textarea>
-  <button onclick="convertToTSV()">কনভার্ট করুন</button>
-  <label for="output">ট্যাব (TSV) ফরম্যাট:</label>
-  <textarea id="output" readonly></textarea>
-
-  <script>
-    function convertToTSV() {
-      const input = document.getElementById('csv').value.trim();
-      // একাধিক লাইন থাকলে সেগুলোও হ্যান্ডেল করবে
-      const lines = input.split('\n');
-      const tsvLines = lines.map(line => {
-        // ডাবল কোটেশন থাকলে সরিয়ে ফেলবে
-        const cleanLine = line.replace(/"/g, '');
-        return cleanLine.split(',').join('\t');
-      });
-      document.getElementById('output').value = tsvLines.join('\n');
-    }
-  </script>
+  <div class="container">
+    <h1>CSV → TSV কনভার্টার</h1>
+    <label for="csv">কমা (,) দিয়ে আলাদা ডাটা লিখুন:</label>
+    <textarea id="csv" placeholder='"value1","value2","value3"' ></textarea>
+    <button id="convertBtn">কনভার্ট করুন</button>
+    <label for="output">ট্যাব (TSV) ফরম্যাট:</label>
+    <textarea id="output" readonly></textarea>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
